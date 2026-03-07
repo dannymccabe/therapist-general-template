@@ -1,32 +1,37 @@
 @import "tailwindcss";
 
-:root {
-  --color-bg-primary:      #FFFFFF;   /* White — primary background */
-  --color-bg-secondary:    #F5F5F5;   /* Light Grey — section alternates */
-  --color-border:          #E0E0E0;   /* Mid Grey — borders, dividers */
-  --color-text-primary:    #111111;   /* Near Black — headlines, primary text */
-  --color-text-secondary:  #3D3D3D;   /* Dark Grey — body text, secondary */
-  --color-accent:          #1A1A1A;   /* Black — CTAs, highlights */
-  --color-accent-hover:    #3D3D3D;   /* Dark Grey — hover states */
-  --color-accent-sage:     #6B6B6B;   /* Mid Grey — secondary accent */
-  --color-gold:            #8C8C8C;   /* Grey — details (replace with brand colour) */
-  --color-dark:            #0A0A0A;   /* Near Black — hero overlay, darkest */
-}
-
-@theme inline {
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
-  --color-border: var(--color-border);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-accent: var(--color-accent);
-  --color-accent-hover: var(--color-accent-hover);
-  --color-accent-sage: var(--color-accent-sage);
-  --color-gold: var(--color-gold);
-  --color-dark: var(--color-dark);
-  --font-display: var(--font-cormorant);
-  --font-body: var(--font-jost);
-}
+/*
+ * CSS custom properties — define per template.
+ * Uncomment and populate when applying a named template.
+ *
+ * :root {
+ *   --color-bg-primary: ;
+ *   --color-bg-secondary: ;
+ *   --color-border: ;
+ *   --color-text-primary: ;
+ *   --color-text-secondary: ;
+ *   --color-accent: ;
+ *   --color-accent-hover: ;
+ *   --color-accent-sage: ;
+ *   --color-gold: ;
+ *   --color-dark: ;
+ * }
+ *
+ * @theme inline {
+ *   --color-bg-primary: var(--color-bg-primary);
+ *   --color-bg-secondary: var(--color-bg-secondary);
+ *   --color-border: var(--color-border);
+ *   --color-text-primary: var(--color-text-primary);
+ *   --color-text-secondary: var(--color-text-secondary);
+ *   --color-accent: var(--color-accent);
+ *   --color-accent-hover: var(--color-accent-hover);
+ *   --color-accent-sage: var(--color-accent-sage);
+ *   --color-gold: var(--color-gold);
+ *   --color-dark: var(--color-dark);
+ *   --font-display: var(--font-cormorant);
+ *   --font-body: var(--font-jost);
+ * }
+ */
 
 /* Smooth scrolling — respects reduced motion preference */
 @media (prefers-reduced-motion: no-preference) {
@@ -35,154 +40,9 @@
   }
 }
 
-html {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-}
-
-body {
-  position: relative;
-  font-family: var(--font-jost), sans-serif;
-  font-weight: 300;
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--color-text-secondary);
-  background-color: var(--color-bg-primary);
-}
-
-/*
- * Paper texture — two layered passes, like the reference:
- * 1. Fine grain (high frequency) — the micro-texture seen close up
- * 2. Coarser paper weave (low frequency) — the macro paper quality
- * Both use mix-blend-mode: overlay so they interact with both
- * light and dark sections rather than just darkening.
- */
-
-/* Fine grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-}
-
-/* Coarser paper weave */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.38' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 320px 320px;
-  opacity: 0.025;
-  mix-blend-mode: multiply;
-}
-
 /* Focus styles — always visible, never removed */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
   border-radius: 4px;
-}
-
-/* Section texture class — swap in brand-specific texture per template */
-.section-texture {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='tex'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23tex)' opacity='0.04'/%3E%3C/svg%3E");
-}
-
-/* Accent rule — used as detail, sparingly */
-.accent-rule {
-  display: block;
-  width: 48px;
-  height: 1px;
-  background-color: var(--color-gold);
-}
-
-/* ─── Nav: transparent state (over hero) ─────────────────────────────── */
-.nav-link {
-  transition: color 0.4s ease, opacity 0.4s ease;
-}
-
-.nav-transparent .nav-link {
-  color: rgba(255, 255, 255, 0.8);
-}
-.nav-transparent .nav-link:hover {
-  color: rgba(255, 255, 255, 1);
-}
-
-.nav-scrolled .nav-link {
-  color: var(--color-text-secondary);
-}
-.nav-scrolled .nav-link:hover {
-  color: var(--color-text-primary);
-}
-
-/* Nav CTA button */
-.nav-cta {
-  border-radius: 8px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-}
-.nav-transparent .nav-cta {
-  border-color: rgba(255, 255, 255, 0.55);
-  color: rgba(255, 255, 255, 0.9);
-}
-.nav-transparent .nav-cta:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.9);
-  color: rgba(255, 255, 255, 1);
-}
-.nav-scrolled .nav-cta {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-.nav-scrolled .nav-cta:hover {
-  background-color: var(--color-accent);
-  color: var(--color-bg-primary);
-}
-
-/* ─── Primary CTA button (hero, booking) ─────────────────────────────── */
-.btn-primary {
-  display: inline-block;
-  background-color: var(--color-accent);
-  color: #FFFFFF;
-  border-radius: 8px;
-  padding: 16px 32px;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: background-color 0.4s ease, opacity 0.4s ease;
-}
-.btn-primary:hover {
-  background-color: var(--color-accent-hover);
-}
-
-@media (max-width: 639px) {
-  .btn-primary {
-    padding: 12px 22px;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-  }
-}
-
-/* ─── Hero H1 font mixing ─────────────────────────────────────────────── */
-/* Regular Cormorant for the main text, italic for <em> runs */
-.hero-headline em {
-  font-style: italic;
-  font-weight: 300;
 }

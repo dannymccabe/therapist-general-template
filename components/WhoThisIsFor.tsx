@@ -19,7 +19,6 @@ export default function WhoThisIsFor() {
       ref={ref}
       id="who-this-is-for"
       aria-labelledby="who-heading"
-      style={{ backgroundColor: "var(--color-bg-primary)" }}
       className="py-14 sm:py-20 lg:py-[160px]"
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
@@ -28,25 +27,11 @@ export default function WhoThisIsFor() {
           animate={inView ? "visible" : "hidden"}
           transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.1 }}
         >
-          <motion.span
-            variants={variants}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="accent-rule mb-5 lg:mb-8"
-            aria-hidden="true"
-          />
-
           <motion.h2
             id="who-heading"
             variants={variants}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-6 lg:mb-10"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(32px, 4vw, 52px)",
-              fontWeight: 400,
-              lineHeight: 1.15,
-              color: "var(--color-text-primary)",
-            }}
+            className="text-3xl lg:text-5xl mb-6 lg:mb-10"
           >
             {siteContent.whoThisIsFor.heading}
           </motion.h2>
@@ -58,7 +43,6 @@ export default function WhoThisIsFor() {
                 variants={variants}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="mb-5 last:mb-0"
-                style={{ color: "var(--color-text-secondary)" }}
               >
                 {paragraph}
               </motion.p>

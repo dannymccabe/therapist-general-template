@@ -6,13 +6,13 @@ import { siteContent } from "@/content";
 
 export default function Testimonials() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
   if (!siteContent.testimonials.length) return null;
 
   const variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
     visible: { opacity: 1, y: 0 },
   };
 
@@ -23,25 +23,33 @@ export default function Testimonials() {
       ref={ref}
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="py-14 sm:py-20 lg:py-[160px]"
+      className="py-20 lg:py-32"
+      style={{ background: "var(--color-bg-alt)" }}
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.1 }}
+          transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.08 }}
         >
+          <motion.div
+            variants={variants}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="accent-rule mb-6"
+          />
+
           <motion.h2
             id="testimonials-heading"
             variants={variants}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-3xl lg:text-5xl mb-10 lg:mb-16"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-3xl lg:text-4xl font-light mb-12 lg:mb-16"
+            style={{ color: "var(--color-text-primary)" }}
           >
             What clients say.
           </motion.h2>
 
           <div
-            className={`grid gap-8 ${
+            className={`grid gap-6 ${
               testimonials.length === 1
                 ? "max-w-2xl"
                 : testimonials.length === 2
@@ -53,13 +61,23 @@ export default function Testimonials() {
               <motion.figure
                 key={i}
                 variants={variants}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="border p-6 rounded-lg"
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="glass-panel p-7"
               >
                 <blockquote>
-                  <p className="italic mb-4">&ldquo;{t.quote}&rdquo;</p>
+                  <p
+                    className="text-base font-light italic leading-relaxed mb-5"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
                 </blockquote>
-                <figcaption className="text-sm">{t.attribution}</figcaption>
+                <figcaption
+                  className="text-xs font-medium tracking-wide uppercase"
+                  style={{ color: "var(--color-text-tertiary)" }}
+                >
+                  {t.attribution}
+                </figcaption>
               </motion.figure>
             ))}
           </div>

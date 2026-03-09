@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="600" fill="#B8C4CE"/>
+  <!-- Back hills -->
+  <path d="M0 420 Q150 280 300 340 Q450 400 600 300 Q750 200 900 280 Q1050 360 1200 260 L1200 600 L0 600 Z" fill="#C8D2DA" opacity="0.8"/>
+  <!-- Front hills -->
+  <path d="M0 500 Q200 380 400 440 Q550 480 700 400 Q850 320 1000 390 Q1100 430 1200 370 L1200 600 L0 600 Z" fill="#D6DDE4"/>
+  <!-- Circle (sun/moon) -->
+  <circle cx="340" cy="190" r="52" fill="#E4EAF0" opacity="0.9"/>
+</svg>

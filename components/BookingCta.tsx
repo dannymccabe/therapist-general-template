@@ -27,11 +27,11 @@ function CalEmbed() {
 
 export default function BookingCta() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
   const variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
     visible: { opacity: 1, y: 0 },
   };
 
@@ -40,32 +40,35 @@ export default function BookingCta() {
       ref={ref}
       id="booking"
       aria-labelledby="booking-heading"
-      className="py-14 sm:py-20 lg:py-[160px]"
+      className="py-20 lg:py-32"
+      style={{ background: "var(--color-dark)" }}
     >
       <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.12 }}
+          transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.1 }}
         >
           <motion.h2
             id="booking-heading"
             variants={variants}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-3xl lg:text-5xl mb-4"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-3xl lg:text-4xl font-light mb-4"
+            style={{ color: "#FFFFFF" }}
           >
             {siteContent.bookingCta.heading}
           </motion.h2>
 
           <motion.p
             variants={variants}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="mb-10 text-sm sm:text-base"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="mb-10 text-sm sm:text-base font-light"
+            style={{ color: "rgba(255,255,255,0.65)" }}
           >
             {siteContent.bookingCta.subheading}
           </motion.p>
 
-          <motion.div variants={variants} transition={{ duration: 0.7, ease: "easeOut" }}>
+          <motion.div variants={variants} transition={{ duration: 0.5, ease: "easeOut" }}>
             <CalEmbed />
           </motion.div>
         </motion.div>

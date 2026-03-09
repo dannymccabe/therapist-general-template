@@ -76,115 +76,115 @@ export interface SiteContent {
 export const siteContent = {
   practice: {
     name: "[Practice Name]",
-    therapistName: "[Therapist Name]",
-    email: "[email@example.com]",
+    therapistName: "[Practitioner Name]",
+    email: "[hello@practice.com]",
     country: "UK",
     city: "[City]",
-    registrationBody: "[BACP / UKCP / IACP]",
+    registrationBody: "[Registration Body]",
     registrationNumber: "[000000]",
     calNamespace: "[cal-namespace]",
     calLink: "[cal-username/session-type]",
-    sessionFee: "[£00]",
-    sessionLength: "[50 minutes]",
+    sessionFee: "[Fee per session]",
+    sessionLength: "[Session length]",
     slidingScale: false,
     format: "Both",
-    locationIfInPerson: "[Location]",
+    locationIfInPerson: "[City or area]",
     acceptingClients: "Yes",
     freeConsultation: "Yes — 20 mins",
   },
   hero: {
-    headline: "[Hero headline — speaks to visitor's situation, not therapist's credentials]",
+    headline: "[Headline — address the visitor's primary concern, not your credentials]",
     subheadline:
-      "[One or two sentences. Who this is for and where/how you work.]",
+      "[One to two sentences. State clearly who you work with and how you deliver your service.]",
     cta: "Book a free consultation",
   },
   trustBar: {
     items: [
-      "[Registration body] Registered",
-      "[X]+ years in practice",
-      "[Online / In person / Both]",
+      "[Credential or certification]",
+      "[X]+ years of experience",
+      "[Service format — remote, in person, or both]",
     ],
   },
   whoThisIsFor: {
-    heading: "[Section heading]",
+    heading: "[Section heading — who is this service for?]",
     body: [
-      "[First paragraph — use the client's own language. Make the right person feel seen.]",
-      "[Second paragraph — describe the situation or feeling they may be experiencing.]",
-      "[Third paragraph — a gentle invitation. No pressure, no urgency.]",
+      "[Opening paragraph — describe the situation or challenge your ideal client is facing. Be specific and direct.]",
+      "[Second paragraph — outline what is getting in the way for them and why they have not yet found a solution.]",
+      "[Third paragraph — a clear, low-pressure invitation. What is the first step they can take?]",
     ],
   },
   approach: {
-    heading: "[Section heading]",
+    heading: "[Section heading — how do you work?]",
     body: [
-      "[First paragraph — describe the therapeutic relationship and what it feels like.]",
-      "[Second paragraph — how sessions are structured or what the therapist pays attention to.]",
-      "[Third paragraph — the underlying philosophy or what they care about most.]",
+      "[First paragraph — describe your working method and what a client can expect from sessions with you.]",
+      "[Second paragraph — explain the structure of your service and what you focus on during your work together.]",
+      "[Third paragraph — state the core principle or value that underpins your practice.]",
     ],
-    modalities: ["[Modality 1]", "[Modality 2]", "[Modality 3]"],
+    modalities: ["[Method or framework 1]", "[Method or framework 2]", "[Method or framework 3]"],
   },
   about: {
-    heading: "[Section heading]",
+    heading: "[Section heading — who are you?]",
     body: [
-      "[First paragraph — why they became a therapist. Personal but professional.]",
-      "[Second paragraph — training, years in practice, registration details.]",
-      "[Third paragraph — something human. Who they are outside the therapy room.]",
+      "[First paragraph — describe your background and what led you to this work. Keep it professional and human.]",
+      "[Second paragraph — outline your qualifications, years of experience, and any relevant accreditations.]",
+      "[Third paragraph — add a brief personal note. What do you care about most in your work?]",
     ],
-    imageSrc: "/images/about.svg",
-    imageAlt: "[Descriptive alt text for therapist's photo]",
+    imageSrc: "/images/placeholder.svg",
+    imageAlt: "[Descriptive alt text for the practitioner's photo]",
   },
   testimonials: [
     {
       quote:
-        "[Anonymised testimonial — one or two sentences. Client's own words.]",
-      attribution: "Client, [location or 'online']",
+        "[Client testimonial — one or two sentences in the client's own words. Keep it specific and authentic.]",
+      attribution: "[Client, location or service format]",
     },
     {
       quote:
-        "[Second testimonial — different tone or focus from the first.]",
-      attribution: "Client, [location or 'online']",
+        "[Second testimonial — choose a different focus or outcome from the first to show range.]",
+      attribution: "[Client, location or service format]",
     },
   ],
   faq: [
     {
-      question: "How much does it cost?",
+      question: "What is the cost per session?",
       answer:
-        "[Session fee and length. Mention sliding scale if applicable.]",
+        "[State the fee clearly. Include session length. Note whether a sliding scale or concessions are available.]",
     },
     {
       question: "What happens in the first session?",
       answer:
-        "[Describe the first session. Reassure the visitor they don't need to have everything figured out.]",
+        "[Describe what a new client can expect. Reassure them that they do not need to have everything prepared in advance.]",
     },
     {
-      question: "How do I know if therapy will help?",
+      question: "How do I know if this is right for me?",
       answer:
-        "[Honest answer. Acknowledge uncertainty. Emphasise the importance of the relationship. Mention the free consultation.]",
+        "[Address the uncertainty a prospective client may feel. Explain how the free consultation helps them decide without commitment.]",
     },
     {
-      question: "What's your cancellation policy?",
+      question: "What is your cancellation policy?",
       answer:
-        "[Notice period required and what happens if they cancel late. Warm but clear.]",
+        "[State the notice period required and what happens if a session is cancelled late. Be clear and direct.]",
     },
     {
-      question: "Is everything I say confidential?",
+      question: "Is everything I share kept confidential?",
       answer:
-        "[Yes, with the standard exceptions. Name them. This builds trust.]",
+        "[Confirm confidentiality and name any standard exceptions. Transparency here builds trust.]",
     },
     {
-      question: "Do you offer online sessions?",
+      question: "Do you offer remote sessions?",
       answer:
-        "[Yes/No/Both. If both, say where in-person sessions are held.]",
+        "[State whether sessions are available online, in person, or both. If in person, name the location.]",
     },
     {
-      question: "How long will I need therapy?",
+      question: "How long does the process typically take?",
       answer:
-        "[Honest answer — no set timeframe. Mention regular check-ins. Avoid promises.]",
+        "[Give an honest answer. Avoid specific guarantees. Mention that you review progress together at regular intervals.]",
     },
   ],
   bookingCta: {
-    heading: "[Low-pressure CTA headline]",
+    heading: "[Heading — invite the visitor to take the next step, without pressure]",
     subheading:
-      "[One line. Describe the consultation. No commitment, no pressure.]",
+      "[One sentence describing what the initial consultation involves and what they can expect.]",
   },
   footer: {
     crisisLabel: "In crisis? Call Samaritans",

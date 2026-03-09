@@ -1,31 +1,67 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ───────────────────────────────────────────────────────── */
+
 :root {
-  --color-bg-primary:      #FFFFFF;   /* White — primary background */
-  --color-bg-secondary:    #F5F5F5;   /* Light Grey — section alternates */
-  --color-border:          #E0E0E0;   /* Mid Grey — borders, dividers */
-  --color-text-primary:    #111111;   /* Near Black — headlines, primary text */
-  --color-text-secondary:  #3D3D3D;   /* Dark Grey — body text, secondary */
-  --color-accent:          #1A1A1A;   /* Black — CTAs, highlights */
-  --color-accent-hover:    #3D3D3D;   /* Dark Grey — hover states */
-  --color-accent-sage:     #6B6B6B;   /* Mid Grey — secondary accent */
-  --color-gold:            #8C8C8C;   /* Grey — details (replace with brand colour) */
-  --color-dark:            #0A0A0A;   /* Near Black — hero overlay, darkest */
+  /* Backgrounds */
+  --color-bg:              #F5F7FA;
+  --color-bg-alt:          #FFFFFF;
+
+  /* Surfaces (glass) */
+  --color-surface:         rgba(255, 255, 255, 0.72);
+  --color-surface-dark:    rgba(255, 255, 255, 0.08);
+
+  /* Borders */
+  --color-border:          rgba(0, 0, 0, 0.08);
+  --color-border-strong:   rgba(0, 0, 0, 0.14);
+
+  /* Text */
+  --color-text-primary:    #1D1D1F;
+  --color-text-secondary:  #6E6E73;
+  --color-text-tertiary:   #AEAEB2;
+
+  /* Accent */
+  --color-accent:          #0071E3;
+  --color-accent-hover:    #0077ED;
+
+  /* Dark section (booking CTA) */
+  --color-dark:            #1D1D1F;
+
+  /* Glass tokens */
+  --glass-blur:            12px;
+  --glass-shadow:          0 2px 20px rgba(0, 0, 0, 0.07);
+  --glass-radius:          16px;
+  --radius-btn:            10px;
 }
 
+/* Expose tokens to Tailwind */
 @theme inline {
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
-  --color-border: var(--color-border);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-accent: var(--color-accent);
-  --color-accent-hover: var(--color-accent-hover);
-  --color-accent-sage: var(--color-accent-sage);
-  --color-gold: var(--color-gold);
-  --color-dark: var(--color-dark);
-  --font-display: var(--font-cormorant);
-  --font-body: var(--font-jost);
+  --color-bg:              var(--color-bg);
+  --color-bg-alt:          var(--color-bg-alt);
+  --color-surface:         var(--color-surface);
+  --color-border:          var(--color-border);
+  --color-border-strong:   var(--color-border-strong);
+  --color-text-primary:    var(--color-text-primary);
+  --color-text-secondary:  var(--color-text-secondary);
+  --color-text-tertiary:   var(--color-text-tertiary);
+  --color-accent:          var(--color-accent);
+  --color-accent-hover:    var(--color-accent-hover);
+  --color-dark:            var(--color-dark);
+  --font-sans:             var(--font-inter);
+}
+
+/* ─── Base ────────────────────────────────────────────────────────────────── */
+
+html {
+  background: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Smooth scrolling — respects reduced motion preference */
@@ -35,154 +71,73 @@
   }
 }
 
-html {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-}
-
-body {
-  position: relative;
-  font-family: var(--font-jost), sans-serif;
-  font-weight: 300;
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--color-text-secondary);
-  background-color: var(--color-bg-primary);
-}
-
-/*
- * Paper texture — two layered passes, like the reference:
- * 1. Fine grain (high frequency) — the micro-texture seen close up
- * 2. Coarser paper weave (low frequency) — the macro paper quality
- * Both use mix-blend-mode: overlay so they interact with both
- * light and dark sections rather than just darkening.
- */
-
-/* Fine grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-}
-
-/* Coarser paper weave */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.38' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 320px 320px;
-  opacity: 0.025;
-  mix-blend-mode: multiply;
-}
-
-/* Focus styles — always visible, never removed */
+/* Focus styles — always visible, styled with accent colour */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Section texture class — swap in brand-specific texture per template */
-.section-texture {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='tex'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23tex)' opacity='0.04'/%3E%3C/svg%3E");
+/* ─── Utility classes ─────────────────────────────────────────────────────── */
+
+/* Glass panel — cards, FAQ items, modality badges */
+.glass-panel {
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
 }
 
-/* Accent rule — used as detail, sparingly */
-.accent-rule {
-  display: block;
-  width: 48px;
-  height: 1px;
-  background-color: var(--color-gold);
+/* Primary button — filled accent */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-btn);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
-/* ─── Nav: transparent state (over hero) ─────────────────────────────── */
-.nav-link {
-  transition: color 0.4s ease, opacity 0.4s ease;
+.btn-primary:hover {
+  background: var(--color-accent-hover);
 }
 
-.nav-transparent .nav-link {
-  color: rgba(255, 255, 255, 0.8);
-}
-.nav-transparent .nav-link:hover {
-  color: rgba(255, 255, 255, 1);
+/* Ghost button — outlined */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-border-strong);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
 }
 
-.nav-scrolled .nav-link {
-  color: var(--color-text-secondary);
-}
-.nav-scrolled .nav-link:hover {
+.btn-ghost:hover {
+  border-color: var(--color-text-secondary);
   color: var(--color-text-primary);
 }
 
-/* Nav CTA button */
-.nav-cta {
-  border-radius: 8px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-}
-.nav-transparent .nav-cta {
-  border-color: rgba(255, 255, 255, 0.55);
-  color: rgba(255, 255, 255, 0.9);
-}
-.nav-transparent .nav-cta:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.9);
-  color: rgba(255, 255, 255, 1);
-}
-.nav-scrolled .nav-cta {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
-.nav-scrolled .nav-cta:hover {
-  background-color: var(--color-accent);
-  color: var(--color-bg-primary);
-}
-
-/* ─── Primary CTA button (hero, booking) ─────────────────────────────── */
-.btn-primary {
-  display: inline-block;
-  background-color: var(--color-accent);
-  color: #FFFFFF;
-  border-radius: 8px;
-  padding: 16px 32px;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: background-color 0.4s ease, opacity 0.4s ease;
-}
-.btn-primary:hover {
-  background-color: var(--color-accent-hover);
-}
-
-@media (max-width: 639px) {
-  .btn-primary {
-    padding: 12px 22px;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-  }
-}
-
-/* ─── Hero H1 font mixing ─────────────────────────────────────────────── */
-/* Regular Cormorant for the main text, italic for <em> runs */
-.hero-headline em {
-  font-style: italic;
-  font-weight: 300;
+/* Thin accent rule */
+.accent-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--color-border-strong);
 }

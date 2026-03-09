@@ -21,11 +21,10 @@ function FAQItem({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
-      className="border-b"
-      style={{ borderColor: "var(--color-border)" }}
+      transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.04 }}
+      className="glass-panel mb-2 overflow-hidden"
     >
       <button
         id={buttonId}
@@ -33,23 +32,20 @@ function FAQItem({
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-controls={answerId}
-        className="w-full flex items-center justify-between gap-4 py-4 sm:py-6 text-left"
+        className="w-full flex items-center justify-between gap-4 px-5 py-4 sm:py-5 text-left"
       >
         <span
-          className="text-[15px] sm:text-[17px] font-[300] leading-snug"
+          className="text-sm sm:text-base font-normal"
           style={{ color: "var(--color-text-primary)" }}
         >
           {question}
         </span>
         <span
           className="flex-shrink-0 w-6 h-6 flex items-center justify-center"
+          style={{ color: "var(--color-accent)" }}
           aria-hidden="true"
         >
-          {open ? (
-            <Minus size={16} strokeWidth={1.5} style={{ color: "var(--color-accent)" }} />
-          ) : (
-            <Plus size={16} strokeWidth={1.5} style={{ color: "var(--color-accent)" }} />
-          )}
+          {open ? <Minus size={15} strokeWidth={1.5} /> : <Plus size={15} strokeWidth={1.5} />}
         </span>
       </button>
 
@@ -63,11 +59,11 @@ function FAQItem({
             initial={prefersReducedMotion ? { opacity: 1 } : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
             style={{ overflow: "hidden" }}
           >
             <p
-              className="pb-6 max-w-[620px]"
+              className="px-5 pb-5 max-w-[620px] text-sm font-light leading-relaxed"
               style={{ color: "var(--color-text-secondary)" }}
             >
               {answer}
@@ -81,7 +77,7 @@ function FAQItem({
 
 export default function FAQ() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -89,33 +85,26 @@ export default function FAQ() {
       ref={ref}
       id="faq"
       aria-labelledby="faq-heading"
-      style={{ backgroundColor: "var(--color-bg-primary)" }}
-      className="py-14 sm:py-20 lg:py-[160px]"
+      className="py-20 lg:py-32"
+      style={{ background: "var(--color-bg)" }}
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-14 lg:gap-24">
-          {/* Heading — left column on desktop */}
+        <div className="grid md:grid-cols-[1fr_2fr] gap-10 md:gap-14 lg:gap-24">
           <motion.div
-            initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 20 }}
+            initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <span className="accent-rule mb-5 lg:mb-8" aria-hidden="true" />
+            <div className="accent-rule mb-6" />
             <h2
               id="faq-heading"
-              style={{
-                fontFamily: "var(--font-cormorant)",
-                fontSize: "clamp(32px, 3.5vw, 52px)",
-                fontWeight: 400,
-                lineHeight: 1.15,
-                color: "var(--color-text-primary)",
-              }}
+              className="text-3xl lg:text-4xl font-light"
+              style={{ color: "var(--color-text-primary)" }}
             >
               Common questions.
             </h2>
           </motion.div>
 
-          {/* Accordion — right column */}
           {inView && (
             <div aria-label="Frequently asked questions">
               {siteContent.faq.map((item, i) => (

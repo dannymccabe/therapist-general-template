@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 /**
- * Renders a brief warm-parchment fade that covers the page on first load,
- * then dissolves to reveal the site. Gives the "Framer premium feel" —
- * a moment of intention before content appears.
+ * Renders a brief fade that covers the page on first load, then dissolves
+ * to reveal the site. Apply a background colour here matching the template.
  */
 export default function PageLoader() {
   const [visible, setVisible] = useState(true);
@@ -24,8 +23,7 @@ export default function PageLoader() {
       {visible && (
         <motion.div
           key="loader"
-          className="fixed inset-0 z-[200] pointer-events-none"
-          style={{ backgroundColor: "var(--color-bg-primary)" }}
+          className="fixed inset-0 z-[200] pointer-events-none bg-white"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}

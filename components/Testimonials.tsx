@@ -6,17 +6,16 @@ import { siteContent } from "@/content";
 
 export default function Testimonials() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { once: true, amount: 0.15 });
   const prefersReducedMotion = useReducedMotion();
 
   if (!siteContent.testimonials.length) return null;
 
   const variants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
     visible: { opacity: 1, y: 0 },
   };
 
-  // Cap at 3
   const testimonials = siteContent.testimonials.slice(0, 3);
 
   return (
@@ -24,40 +23,33 @@ export default function Testimonials() {
       ref={ref}
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      style={{ backgroundColor: "var(--color-bg-secondary)" }}
-      className="section-texture py-14 sm:py-20 lg:py-[160px]"
+      className="py-20 lg:py-32"
+      style={{ background: "var(--color-bg-alt)" }}
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <motion.div
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.1 }}
+          transition={{ staggerChildren: prefersReducedMotion ? 0 : 0.08 }}
         >
-          <motion.span
+          <motion.div
             variants={variants}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="accent-rule mb-5 lg:mb-8"
-            aria-hidden="true"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="accent-rule mb-6"
           />
 
           <motion.h2
             id="testimonials-heading"
             variants={variants}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-10 lg:mb-16"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(32px, 4vw, 52px)",
-              fontWeight: 400,
-              lineHeight: 1.15,
-              color: "var(--color-text-primary)",
-            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-3xl lg:text-4xl font-light mb-12 lg:mb-16"
+            style={{ color: "var(--color-text-primary)" }}
           >
             What clients say.
           </motion.h2>
 
           <div
-            className={`grid gap-8 ${
+            className={`grid gap-6 ${
               testimonials.length === 1
                 ? "max-w-2xl"
                 : testimonials.length === 2
@@ -69,29 +61,20 @@ export default function Testimonials() {
               <motion.figure
                 key={i}
                 variants={variants}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="p-5 sm:p-8 rounded-xl"
-                style={{
-                  backgroundColor: "var(--color-bg-primary)",
-                  border: "1px solid var(--color-border)",
-                }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="glass-panel p-7"
               >
                 <blockquote>
                   <p
-                    className="italic leading-relaxed mb-6"
-                    style={{
-                      fontFamily: "var(--font-cormorant)",
-                      fontSize: "20px",
-                      fontWeight: 300,
-                      color: "var(--color-text-primary)",
-                    }}
+                    className="text-base font-light italic leading-relaxed mb-5"
+                    style={{ color: "var(--color-text-primary)" }}
                   >
                     &ldquo;{t.quote}&rdquo;
                   </p>
                 </blockquote>
                 <figcaption
-                  className="text-[12px] font-[400] uppercase tracking-[0.12em]"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  className="text-xs font-medium tracking-wide uppercase"
+                  style={{ color: "var(--color-text-tertiary)" }}
                 >
                   {t.attribution}
                 </figcaption>

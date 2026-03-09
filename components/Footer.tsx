@@ -24,24 +24,24 @@ export default function Footer() {
   return (
     <footer
       aria-label="Site footer"
+      className="py-12"
       style={{
-        backgroundColor: "var(--color-bg-secondary)",
+        background: "var(--color-bg-alt)",
         borderTop: "1px solid var(--color-border)",
       }}
-      className="py-12"
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
           {/* Practice info */}
           <div>
             <p
-              className="text-[12px] font-[400] uppercase tracking-[0.12em] mb-3"
+              className="text-xs font-semibold tracking-widest uppercase mb-4"
               style={{ color: "var(--color-text-primary)" }}
             >
               {name}
             </p>
             <p
-              className="text-[13px] font-[300] leading-relaxed"
+              className="text-sm font-light leading-relaxed"
               style={{ color: "var(--color-text-secondary)" }}
             >
               {registrationBody} Registered
@@ -55,62 +55,52 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <p
-              className="text-[12px] font-[400] uppercase tracking-[0.12em] mb-3"
+              className="text-xs font-semibold tracking-widest uppercase mb-4"
               style={{ color: "var(--color-text-primary)" }}
             >
               Contact
             </p>
             <a
               href={`mailto:${email}`}
-              className="text-[13px] font-[300] transition-colors duration-400"
+              className="text-sm font-light transition-colors duration-200"
               style={{ color: "var(--color-text-secondary)" }}
             >
               {email}
             </a>
             <div className="mt-4 flex flex-wrap gap-4">
-              <a
-                href="/privacy-policy"
-                className="text-[12px] font-[300] underline underline-offset-2 transition-colors duration-400 hover:opacity-70"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="/cookie-policy"
-                className="text-[12px] font-[300] underline underline-offset-2 transition-colors duration-400 hover:opacity-70"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                Cookie Policy
-              </a>
-              <a
-                href="/terms"
-                className="text-[12px] font-[300] underline underline-offset-2 transition-colors duration-400 hover:opacity-70"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                Terms &amp; Conditions
-              </a>
+              {[
+                { href: "/privacy-policy", label: "Privacy Policy" },
+                { href: "/cookie-policy", label: "Cookie Policy" },
+                { href: "/terms", label: "Terms & Conditions" },
+              ].map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="text-xs font-medium underline underline-offset-2"
+                  style={{ color: "var(--color-text-tertiary)" }}
+                >
+                  {label}
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Crisis resources */}
           <div>
             <p
-              className="text-[12px] font-[400] uppercase tracking-[0.12em] mb-3"
+              className="text-xs font-semibold tracking-widest uppercase mb-4"
               style={{ color: "var(--color-text-primary)" }}
             >
               In crisis?
             </p>
             {resources.map((r) => (
-              <p
-                key={r.label}
-                className="text-[13px] font-[300] mb-1"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
+              <p key={r.label} className="text-sm font-light mb-1" style={{ color: "var(--color-text-secondary)" }}>
                 <a
                   href={r.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline underline-offset-2 hover:opacity-70 transition-opacity"
+                  className="underline underline-offset-2"
+                  style={{ color: "var(--color-accent)" }}
                 >
                   {r.label}
                 </a>{" "}
@@ -125,19 +115,16 @@ export default function Footer() {
           className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
           style={{ borderTop: "1px solid var(--color-border)" }}
         >
-          <p
-            className="text-[12px] font-[300]"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
+          <p className="text-xs font-light" style={{ color: "var(--color-text-tertiary)" }}>
             &copy; {year} {name}. All rights reserved.
           </p>
-          <p className="text-[12px] font-[300]" style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}>
+          <p className="text-xs font-light" style={{ color: "var(--color-text-tertiary)" }}>
             Site by{" "}
             <a
               href="https://www.karvwebstudio.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-2 hover:opacity-70 transition-opacity"
+              className="underline underline-offset-2"
             >
               Karv Web Studio
             </a>
